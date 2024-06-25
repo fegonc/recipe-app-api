@@ -8,6 +8,7 @@ from django.contrib.auth.models import(
     PermissionsMixin,
 )
 
+
 class UserManager(BaseUserManager):
     '''Manager for users'''
     def create_user(self, email, password=None, **extra_fields):
@@ -40,3 +41,11 @@ class User(AbstractBaseUser,PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
+    def get_full_name(self):
+        '''Retrieve full name of user'''
+        return self.name
+
+    def get_short_name(self):
+        '''Retrieve short name of user'''
+        return self.name
